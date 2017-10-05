@@ -11,12 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('post', 'PostController');
+Route::group(['middleware' => ['auth']], function (){
+
+
+    Route::get('/relation', 'HomeController@post')->name('home');
+
+    Route::resource('post', 'PostController');
+
+});
+
+Route::get('/{post}/{string}', 'HomeController@index')->name('home');

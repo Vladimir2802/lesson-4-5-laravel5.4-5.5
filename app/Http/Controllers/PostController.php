@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -15,11 +17,8 @@ class PostController extends Controller
      */
     public function index(Post $post)
     {
-        $posts = $post->orderBy('id', 'asc')->get();
+        $posts = $post->getActive()->get();
 
-//        dd($posts);
-
-//        return view('post.index', ['posts' => $posts]);
         return view('post.index', compact('posts'));
     }
 

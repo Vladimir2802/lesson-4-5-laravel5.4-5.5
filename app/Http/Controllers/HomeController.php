@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
+use App\Themes;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+//        $this->middleware('auth');
     }
 
     /**
@@ -21,8 +23,21 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Post $post, $string)
     {
-        return view('home');
+        dd($post);
+    }
+
+    public function theme()
+    {
+        $theme = Themes::find(1);
+
+        dd($theme->posts);
+    }
+
+    public function post(){
+        $post = Post::find(1);
+
+        dd($post->theme);
     }
 }

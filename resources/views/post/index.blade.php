@@ -28,7 +28,7 @@
                         @foreach ($posts as $model)
                             <tr>
                                 <td>{{$model->id}}</td>
-                                <td>{{$model->message}}</td>
+                                <td>{!! $model->message !!}</td>
                                 <td>{{$model->created_at}}</td>
                                 <td>
                                     {{Form::open(['class' => 'confirm-delete', 'route' => ['post.destroy', $model->id], 'method' => 'DELETE'])}}

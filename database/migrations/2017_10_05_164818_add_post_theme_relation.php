@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostsTable extends Migration
+class AddPostThemeRelation extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('message');
-            $table->integer('created_by');
-            $table->integer('status');
-            $table->timestamps();
+        Schema::table('posts', function (Blueprint $table) {
+            $table->integer('theme_id')->unsigned();
+
+//            $table->foreign('theme_id')->references('id')->on('themes');
         });
+
+
     }
 
     /**
@@ -29,6 +29,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        //
     }
 }
